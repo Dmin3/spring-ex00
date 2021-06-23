@@ -15,7 +15,7 @@
     	content content,
     	writer writer,
     	regdate regdate,
-    	updatedate updateDate
+    	updatedate updatedate
     
      FROM tbl_board
      
