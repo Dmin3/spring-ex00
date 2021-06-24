@@ -55,8 +55,11 @@ public class BoardControllerTests {
 	
 	@Test
 	public void testList() throws Exception {
-		ModelAndView mav = mockMvc.perform(MockMvcRequestBuilders.get("/board/list"))
-		.andReturn().getModelAndView();
+		ModelAndView mav = mockMvc.perform(MockMvcRequestBuilders.get("/board/list")
+				.param("pageNum", "2")
+				.param("amount", "7")).andReturn().getModelAndView();
+				
+		
 		
 		assertEquals("board/list", mav.getViewName());
 		
@@ -66,6 +69,12 @@ public class BoardControllerTests {
 		
 		assertNotNull(o);
 		assertTrue(o instanceof List<?>);
+		
+		List<BoardVO> list = (List<BoardVO>) o;
+		assertEquals(7, list.size());
+		
+		Object o2 = map.get("criteria");
+		assertNotNull(o2);
 		
 		
 		// fail("fail");
@@ -128,4 +137,10 @@ public class BoardControllerTests {
 			.andExpect(flash().attribute("result", "success"));
 		
 	}
+	
+
+	
+	
+	
+	
 }

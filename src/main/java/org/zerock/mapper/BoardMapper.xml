@@ -25,6 +25,29 @@
     
   </select>
   
+   <select id="getListWithPaging" resultType="org.zerock.domain.BoardVO">
+    <!-- 매우 긴코드를 따로 빼서 작업해줌 -->
+    
+    <!-- tag가 잘못 인식하지 않도록 CDATA라는 문법으로 묶어주는 역할 -->
+    <![CDATA[ 
+    SELECT 
+    	bno bno,
+    	title title,
+    	content content,
+    	writer writer,
+    	regdate regdate,
+    	updatedate updatedate
+    
+     FROM tbl_board
+     
+   	 ORDER BY bno DESC
+     
+     LIMIT #{from}, #{amount} 
+    ]]>
+   
+    
+  </select>
+   
   <insert id="insert">
   	INSERT INTO tbl_board (title, content, writer)
   	VALUES (#{title}, #{content}, #{writer})
@@ -65,5 +88,9 @@
   		bno = #{bno}
   	
   </update>
+  
+  <select id="getTotalCount" resultType="int">
+  	SELECT COUNT(*) FROM tbl_board
+  </select>
   
 </mapper>
