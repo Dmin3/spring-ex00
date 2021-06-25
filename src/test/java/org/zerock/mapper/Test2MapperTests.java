@@ -1,0 +1,84 @@
+package org.zerock.mapper;
+
+import static org.junit.Assert.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import lombok.Setter;
+import lombok.extern.log4j.Log4j;
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
+@Log4j
+public class Test2MapperTests {
+	
+	@Setter(onMethod_ = @Autowired)
+	private Test2Mapper mapper;
+	
+	@Test
+	public void test() {
+		assertNotNull(mapper);
+	}
+	
+	@Test
+	public void test1() {
+//		assertEquals(1, mapper.sql1(""));
+		mapper.sql1("");
+	}
+	
+	@Test
+	public void test2() {
+		assertEquals(1, mapper.sql2("a"));
+		assertEquals(2, mapper.sql2("b"));
+		assertNotEquals(2, mapper.sql2("a"));
+		
+	}
+	
+	@Test
+	public void test3() {
+		mapper.sql3("a");
+		
+	}
+	
+	@Test
+	public void test4() {
+		mapper.sql4("c");
+		
+	}
+	
+	@Test
+	public void test5() {
+		mapper.sql5("c");
+		
+	}
+	
+	@Test
+	public void test6() {
+		List<String> list = new ArrayList<String>();
+		list.add("java");
+		list.add("user00");
+		list.add("user01");
+		
+		mapper.sql6(list);
+		
+	}
+	
+	@Test
+	public void test7() {
+		List<String> list = new ArrayList<String>();
+		list.add("java");
+		list.add("user00");
+		list.add("user01");
+		
+		mapper.sql7(list);
+		
+	}
+	
+}

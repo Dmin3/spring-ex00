@@ -3,24 +3,18 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <c:url value="/board/list" var="listUrl" >
-	
-	<c:param name="pageNum" value="${pageMaker.cri.pageNum }"></c:param>
-	<c:param name="amount" value="${pageMaker.cri.amount }"></c:param>
-	
-	
 	<c:param name="pageNum" value="${cri.pageNum }"></c:param>
 	<c:param name="amount" value="${cri.amount }"></c:param>
+	<c:param name="keyword" value="${cri.keyword }"></c:param>
+	<c:param name="type" value="${cri.type }"></c:param>
 	
 </c:url>
 
 <c:url value="/board/register" var="registerUrl" >
-	
-	<c:param name="pageNum" value="${pageMaker.cri.pageNum }"></c:param>
-	<c:param name="amount" value="${pageMaker.cri.amount }"></c:param>
-	
-	
 	<c:param name="pageNum" value="${cri.pageNum }"></c:param>
 	<c:param name="amount" value="${cri.amount }"></c:param>
+	<c:param name="keyword" value="${cri.keyword }"></c:param>
+	<c:param name="type" value="${cri.type }"></c:param>
 	
 </c:url>
 
@@ -45,4 +39,40 @@
       </li>
     </ul>
   </div>
+  
+   <form action="${listUrl }" method="get" class="form-inline">
+   		
+   	<select name="type" class="form-control mr-sm-2">
+   		<option value=""> </option>
+   		<option value="T" ${cri.type == "T" ? 'selected': '' }>제목 </option>
+   		<option value="C" ${cri.type == "C" ? 'selected': '' }>내용 </option>
+   		<option value="W" ${cri.type == "W" ? 'selected': '' } >작성자 </option>
+   		<option value="TC" ${cri.type == "TC" ? 'selected': '' }>제목 or 내용 </option>
+   		<option value="TW" ${cri.type == "TW" ? 'selected': '' }>제목 or 작성자 </option>
+   		<option value="TWC" ${cri.type == "TWC" ? 'selected': '' }>제목 or 작성자 or 내용 </option>
+   	</select>	
+   	
+      <input name="keyword" value="${cri.keyword }" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <input type="hidden" name="pageNum" value="1">
+      <input type="hidden" name="amount" value="${cri.amount }">
+      
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">검색</button>
+    </form>
 </nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -3,6 +3,24 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.zerock.mapper.BoardMapper">
+
+<sql id="criteria"> <!-- 재사용을 위해 sql태그로 따로 빼준다.  -->
+	 <where>
+	<foreach item="type" separator="OR" collection="typeArr">
+		<choose>
+			<when test='type == "T"'>
+				title LIKE CONCAT('%', #{keyword}, '%')
+			</when>
+			<when test='type == "W"'>
+				writer LIKE CONCAT('%', #{keyword}, '%')
+			</when>
+			<when test='type == "C"'>
+				content LIKE CONCAT('%', #{keyword}, '%')
+			</when>
+		</choose>
+</foreach>    
+    </where>
+</sql>
  
   <select id="getList" resultType="org.zerock.domain.BoardVO">
     <!-- 매우 긴코드를 따로 빼서 작업해줌 -->
@@ -29,7 +47,7 @@
     <!-- 매우 긴코드를 따로 빼서 작업해줌 -->
     
     <!-- tag가 잘못 인식하지 않도록 CDATA라는 문법으로 묶어주는 역할 -->
-    <![CDATA[ 
+    
     SELECT 
     	bno bno,
     	title title,
@@ -39,13 +57,13 @@
     	updatedate updatedate
     
      FROM tbl_board
-     
+    
+    <include refid="criteria"></include>
+   
    	 ORDER BY bno DESC
      
      LIMIT #{from}, #{amount} 
-    ]]>
    
-    
   </select>
    
   <insert id="insert">
@@ -91,6 +109,7 @@
   
   <select id="getTotalCount" resultType="int">
   	SELECT COUNT(*) FROM tbl_board
+  	 <include refid="criteria"></include>
   </select>
   
 </mapper>
