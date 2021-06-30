@@ -2,6 +2,8 @@ package org.zerock.mapper;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +30,7 @@ public class ReplyMapperTests {
 	@Test
 	public void testInsert() {
 		ReplyVO vo = new ReplyVO();
-		vo.setBno(19L);
+		vo.setBno(1L);
 		vo.setReply("새로 작성하는 답글");
 		vo.setReplyer("user00");
 		
@@ -69,6 +71,22 @@ public class ReplyMapperTests {
 		
 		vo = mapper.read(2L);
 		assertEquals("수정된 댓글", vo.getReply());
+		
+	}
+	
+	@Test
+	public void testGetList() {
+		Long bno = 19L;
+		List<ReplyVO> list = mapper.getList(bno);
+		assertTrue(list.size() > 0);
+		
+		bno = 1L;
+		list = mapper.getList(bno);
+		assertTrue(list.size() > 0);
+
+		
+		
+		
 		
 	}
 }

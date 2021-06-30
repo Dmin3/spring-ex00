@@ -1,5 +1,7 @@
 package org.zerock.mapper;
 
+import java.util.List;
+
 import org.zerock.domain.ReplyVO;
 
 public interface ReplyMapper {
@@ -13,5 +15,8 @@ public interface ReplyMapper {
 	public int delete(Long rno);
 	
 	public int update(ReplyVO vo);
+	
+	// 여러 댓글을 가져오는 메소드
+	public List<ReplyVO> getList(Long bno);
 	
 }
