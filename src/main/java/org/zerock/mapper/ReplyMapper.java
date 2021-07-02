@@ -19,4 +19,8 @@ public interface ReplyMapper {
 	// 여러 댓글을 가져오는 메소드
 	public List<ReplyVO> getList(Long bno);
 	
+	public int getCountByBno(Long bno);
+	
+	public int deleteByBno(Long bno);
+	
 }

@@ -64,7 +64,11 @@ $(document).ready(function(){
 					</c:url>
 					
 					<a href="${getUrl }" >
-					${board.title }
+					${board.title } 
+					<c:if test="${board.replyCnt > 0 }">
+						[${board.replyCnt }]
+					</c:if>
+					
 					</a>
 					 </td>
 					
