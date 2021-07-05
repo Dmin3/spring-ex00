@@ -30,7 +30,7 @@ $(document).ready(function(){
 	<h1>글 수정/삭제</h1>
 	<div class="row">
 			<div class="col-12">
-				<form id="modify-form1" action="${appRoot }/board/modify" method="post">
+				<form id="modify-form1" action="${appRoot }/board/modify" method="post" enctype="multipart/form-data">
 					<input hidden name="bno" value="${board.bno }">
 					<div class="form-group">
 					<label for="input1">제목</label>
@@ -42,6 +42,20 @@ $(document).ready(function(){
 					<c:out value="${board.content }"></c:out>
 					</textarea> 				
 					</div>
+					
+					
+					
+					<c:if test="${not empty board.fileName  }">
+					<div>
+						<img class="img-fluid" src="${imgRoot}${board.bno }/${board.fileName}" />
+					</div>
+					</c:if>
+					
+					<div class="form-group">
+					<label for="input3">파일</label>
+					<input id="input3" class="form-control" type="file" name="file" accept="image/*">
+					</div>
+					
 					<div class="form-group">
 					<label for="input2">작성자</label>
 					 <input readonly="readonly" id="input2" value="${board.writer }" class="form-control" name="writer"> <br>

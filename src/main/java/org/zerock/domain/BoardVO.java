@@ -2,6 +2,8 @@ package org.zerock.domain;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Data;
 // 자바 Bean 작성
 @Data
@@ -15,6 +17,9 @@ private String writer;
 private Date regdate;
 private Date updatedate;
 private int replyCnt;
+
+private String fileName;
+// private MultipartFile file;
 
 	
 }
